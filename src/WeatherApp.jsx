@@ -11,8 +11,9 @@ const WeatherApp = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [isScrolledToEnd, setIsScrolledToEnd] = useState(false);
   const [city, setCity] = useState('');
+  const [state, setState] = useState('');
   const [scrollDirection, setScrollDirection] = useState('right'); // New state for scroll direction
-  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: undefined }));
   console.log(currentTime);
   console.log(isScrolledToEnd);
   const forecastRef = useRef(null);
@@ -24,6 +25,7 @@ const WeatherApp = () => {
       if (!response.ok) throw new Error('Invalid ZIP code');
       const data = await response.json();
       setCity(data.places[0]['place name']);
+      setState(data.places[0]['state']);
     } catch (err) {
       setCity('Unknown');
     }
@@ -179,7 +181,7 @@ const WeatherApp = () => {
             <div className="current-location">
               <div className="location-text">
                 <div className="current-zip">ZIP: {zipCode}</div>
-                <div className="location-name">{city}</div>
+                <div className="location-name">{`${city}, ${state}`}</div>
               </div>
             </div>
             <button 
