@@ -501,6 +501,9 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 20px;
+  display: block; /* Ensure it takes full width on mobile */
+  width: 100%; /* Ensure it takes full width on mobile */
+  text-align: center; /* Center the text */
 }
 
 .refresh-btn:hover {
@@ -519,6 +522,11 @@ body {
   padding: 20px;
 }
 
+.news-section h2 {
+  text-align: center; /* Center the heading */
+  padding-bottom: 20px; /* Add padding below the heading */
+}
+
 .news-articles {
   display: flex;
   flex-direction: column;
@@ -529,6 +537,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  direction: rtl; /* Add RTL direction */
+  text-align: right; /* Align text to the right */
+  padding: 20px; /* Add padding around each article */
+  background: rgba(255, 255, 255, 0.05); /* Add background to each article */
+  border-radius: 10px; /* Add border radius to each article */
 }
 
 .news-image {
@@ -612,6 +625,13 @@ body {
 
   .scroll-text {
     font-size: 0.7rem;
+  }
+
+  .refresh-btn {
+    width: 100%; /* Ensure it takes full width on mobile */
+    display: block; /* Ensure it takes full width on mobile */
+    margin-left: auto; /* Center the button */
+    margin-right: auto; /* Center the button */
   }
 }
 
