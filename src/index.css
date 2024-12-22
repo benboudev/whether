@@ -563,6 +563,11 @@ body {
   color: rgba(255, 255, 255, 0.8);
 }
 
+.read-more-link {
+  color: inherit;
+  text-decoration: none;
+}
+
 @media (max-width: 768px) {
   .glass-container {
     padding: 15px;

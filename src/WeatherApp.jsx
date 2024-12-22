@@ -362,7 +362,7 @@ const WeatherApp = () => {
                 <img src={article.img} alt={article.h1} className="news-image" />
                 <h3>{article.h1}</h3>
                 <p>{article.p}</p>
-                <p>{article.link}</p>
+                <a href={article.link} target="_blank" rel="noopener noreferrer" className="read-more-link">Read More</a> {/* Add class here */}
               </div>
             ))}
           </div>
