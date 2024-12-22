@@ -138,10 +138,10 @@ const WeatherApp = () => {
 
   const formatTime = (timeStr) => {
     const date = new Date(`2000-01-01T${timeStr}`);
-    return date.toLocaleTimeString('en-US', { 
-      hour: 'numeric', 
-      minute: '2-digit', 
-      hour12: true 
+    return date.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
     });
   };
 
@@ -199,16 +199,16 @@ const WeatherApp = () => {
                 <div className="location-name">{`${city}, ${state}`}</div>
               </div>
             </div>
-            <button 
+            <button
               className="change-location-btn"
               onClick={() => setShowSearch(!showSearch)}
             >
-              {showSearch ? 'Cancel' : 'Change Location'}
+              {showSearch ? 'Cancel' : <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-120q-75 0-140.5-28.5t-114-77q-48.5-48.5-77-114T120-480q0-75 28.5-140.5t77-114q48.5-48.5 114-77T480-840q82 0 155.5 35T760-706v-94h80v240H600v-80h110q-41-56-101-88t-129-32q-117 0-198.5 81.5T200-480q0 117 81.5 198.5T480-200q105 0 183.5-68T756-440h82q-15 137-117.5 228.5T480-120Zm112-192L440-464v-216h80v184l128 128-56 56Z"/></svg>}
             </button>
-            
+
           </div>
           <button className="refresh-btn" onClick={handleRefresh}>
-            Refresh Data
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" /></svg>
           </button>
           {showSearch && (
             <form onSubmit={handleSubmit} className="search-form">
@@ -222,7 +222,7 @@ const WeatherApp = () => {
                   pattern="[0-9]*"
                 />
               </div>
-              <button 
+              <button
                 type="submit"
                 className={inputZip.length === 5 ? 'active' : ''}
                 disabled={inputZip.length !== 5}
@@ -231,11 +231,11 @@ const WeatherApp = () => {
               </button>
             </form>
           )}
-          
+
         </div>
         <div className="main-weather">
           <div className="temp-display">
-          <span className="current-time">{currentTime}</span> {/* Display current time */}
+            <span className="current-time">{currentTime}</span> {/* Display current time */}
             <span className="temp">{Math.round(currentHour.temp)}°F</span>
             <span className="condition">{currentHour.conditions}</span>
           </div>
@@ -277,8 +277,8 @@ const WeatherApp = () => {
                 <div className="weekly-forecast-grid">
                   {selectedDay.hours.map((hour, index) => (
                     !isTimePassed(hour.datetime) && (
-                      <div 
-                        key={index} 
+                      <div
+                        key={index}
                         className={`forecast-day ${selectedDay.datetime === hour.datetime ? 'selected' : ''}`}
                       >
                         <span className="hour">{formatTime(hour.datetime)}</span>
@@ -288,8 +288,8 @@ const WeatherApp = () => {
                     )
                   ))}
                 </div>
-                <button 
-                  className={`scroll-indicator ${isScrolledToEnd ? 'scrolled' : ''}`} 
+                <button
+                  className={`scroll-indicator ${isScrolledToEnd ? 'scrolled' : ''}`}
                   onClick={() => handleScrollClick(forecastRef)}
                 >
                   <div>{scrollDirection === 'right' ? '← → ' : '← →'}</div>
@@ -308,16 +308,16 @@ const WeatherApp = () => {
             <div className="forecast-scroll-container" ref={forecast15DayRef}>
               <div className="weekly-forecast-grid">
                 {weather.days.map((day, index) => (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className={`forecast-day ${selectedDay.datetime === day.datetime ? 'selected' : ''}`}
                     onClick={() => setSelectedDay(day)}
                   >
                     <span className="day">
-                      {new Date(day.datetime).toLocaleDateString('en-US', { 
-                        weekday: 'short', 
-                        month: 'short', 
-                        day: 'numeric' 
+                      {new Date(day.datetime).toLocaleDateString('en-US', {
+                        weekday: 'short',
+                        month: 'short',
+                        day: 'numeric'
                       })}
                     </span>
                     <div className="forecast-temps">
@@ -341,8 +341,8 @@ const WeatherApp = () => {
                   </div>
                 ))}
               </div>
-              <button 
-                className={`scroll-indicator ${isScrolledToEnd ? 'scrolled' : ''}`} 
+              <button
+                className={`scroll-indicator ${isScrolledToEnd ? 'scrolled' : ''}`}
                 onClick={() => handleScrollClick(forecast15DayRef)}
               >
                 <div >{scrollDirection === 'right' ? '← → ' : '← →'}</div>
