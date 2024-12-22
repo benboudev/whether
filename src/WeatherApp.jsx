@@ -14,6 +14,7 @@ const WeatherApp = () => {
   const [state, setState] = useState('');
   const [scrollDirection, setScrollDirection] = useState('right'); // New state for scroll direction
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: undefined }));
+  const [news, setNews] = useState([]); // New state for news articles
   console.log(currentTime);
   console.log(isScrolledToEnd);
   const forecastRef = useRef(null);
@@ -49,9 +50,23 @@ const WeatherApp = () => {
     }
   };
 
+  const fetchNews = async () => {
+    try {
+      const response = await fetch('https://yiddish24.vercel.app/api/scrape');
+      const data = await response.json();
+      setNews(data.articles);
+    } catch (err) {
+      console.error('Failed to fetch news:', err);
+    }
+  };
+
   useEffect(() => {
     fetchWeather(zipCode);
   }, [zipCode]);
+
+  useEffect(() => {
+    fetchNews();
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -336,6 +351,19 @@ const WeatherApp = () => {
                 </div>
               </button>
             </div>
+          </div>
+        </div>
+
+        <div className="news-section">
+          <h2>Latest News</h2>
+          <div className="news-articles">
+            {news.map((article, index) => (
+              <div key={index} className="news-article">
+                <img src={article.img} alt={article.h1} className="news-image" />
+                <h3>{article.h1}</h3>
+                <p>{article.p}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
