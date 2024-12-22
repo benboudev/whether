@@ -52,7 +52,7 @@ const WeatherApp = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch('https://yiddish24.vercel.app/api/scrape');
+      const response = await fetch('https://yiddish25.vercel.app/api/scrape');
       const data = await response.json();
       setNews(data.articles);
     } catch (err) {
